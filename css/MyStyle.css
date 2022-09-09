@@ -32,6 +32,7 @@ li {
 
 .sectionHeader {
     padding-bottom: 8px;
+    margin-bottom: 30px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 50px;
     font-weight: bold;
