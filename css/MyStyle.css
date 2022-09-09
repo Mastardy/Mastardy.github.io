@@ -10,7 +10,15 @@ a {
 }
 
 p {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
+}
+
+strong {
+    font-size: 1.5rem;
+}
+
+li {
+    font-size: 1.4rem;
 }
 
 .siteSection {
