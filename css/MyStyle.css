@@ -25,18 +25,18 @@ li {
 }
 
 .project-image {
-    width: 97%;
+    width: 95%;
     border-radius: 25px;
     transition-duration: 0.2s;
     transition-property: transform;
 }
 
 a:hover .project-image {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    outline: 2px solid red;
 }
 
 .project-header {
-    padding-top: 20px;
     font-size: 2.5rem;
     font-weight: bold;
 }
@@ -63,6 +63,5 @@ a:hover .project-image {
 }
 
 .footer {
-    padding-bottom: 100px;
     background-color: rgba(57, 57, 57, 1);
 }
