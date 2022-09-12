@@ -19,7 +19,7 @@ p {
 
 strong {
     font-size: 1.3rem;
-    color: #CFCFCF;
+    color: #60C689;
 }
 
 li {
@@ -46,7 +46,8 @@ h6 {
 
 a:hover .project-image {
     transform: scale(1.03);
-    outline: 2px solid #909090;
+    outline: 2px solid #60C689;
+    outline-offset: 2px;
 }
 
 .navbar-link {
