@@ -1,28 +1,40 @@
 body {
-    color: #eeeeee;
-    background-color: #303030;
+    color: #CFCFCF;
+    background-color: #1e1e1e;
     text-align: center;
-    font-family: 'robotoregular', Arial, sans-serif;
+    font-family: "Open Sans", sans-serif;
     padding-top: 50px;
 }
 
 a {
     text-decoration: none;
-    color: #AAAAff;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
+    color: #60C689;
 }
 
 p {
-    font-size: 1.25rem;
-    color: #bbbbbb;
+    font-size: 1.2rem;
+    color: #CFCFCF;
 }
 
 strong {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
+    color: #CFCFCF;
 }
 
 li {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
+    color: #CFCFCF;
+}
+
+h1 {
+    font-size: 4rem;
+    color: #60C689;
+}
+
+h6 {
+    font-size: 1.2rem;
+    color: #9E9E9E;
 }
 
 .project-image {
@@ -43,11 +55,13 @@ a:hover .project-image {
 }
 
 .navbar-link:hover {
-    background: #303030;
+    background: #292929;
 }
 
 .project-header {
     font-size: 2rem;
+    color: #60C689;
+    text-transform: uppercase;
     font-weight: bold;
 }
 
@@ -61,18 +75,29 @@ a:hover .project-image {
 .siteSection {
     margin-top: -70px;
     padding-top: 70px;
-    background: #303030;
+    background: #1e1e1e;
+    margin-bottom: 100px;
 }
 
 .sectionHeader {
     margin-bottom: 15px;
-    background: #202020;
-    border-radius: 50px;
+    /*background: #202020;
+    border-radius: 50px;*/
+}
+
+.sectionHeader-text {
     font-weight: bold;
+    text-transform: uppercase;
+}
+
+.itch-io-frame {
+    --itch-io-frame-size: 2;
+    width: calc(552px * var(--itch-io-frame-size));
+    height: calc(167px * var(--itch-io-frame-size));
 }
 
 .footer {
-    background-color: rgba(57, 57, 57, 1);
+    background-color: rgba(20, 20, 20, 1);
 }
 
 @font-face {
