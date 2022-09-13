@@ -44,26 +44,26 @@
         <video style="filter: brightness(0.5) blur(0.5rem);" autoplay muted loop class="backgroundVideo">
             <source src="./assets/BackgroundVideo.mp4" type="video/mp4">
         </video>
-        <div style="position:absolute; text-align: center; top: 50%; left:50%; z-index: 1" id="header">
-            <h1 style="font-size: 5rem; transform: translate(-50%, -50%); text-transform: uppercase; font-weight: bold; text-shadow: 2px 2px #000000">André Monteiro</h1>
-            <ul style="transform: translate(-50%, -50%)">
-                <li style="display: inline-block; text-transform: uppercase; font-weight: bold; text-shadow: 2px 2px #000000; padding-right: 50px">
+        <div style="position: absolute; text-align: center; top: 50%; left:50%; z-index: 1" id="header">
+            <h1 class="intro-h1 fadeInOut" style="margin: 0; padding: 0">André Monteiro</h1>
+            <ul style="transform: translate(-50%, -50%); margin: 0; padding: 0;">
+                <li class="intro-li" style="padding-right: 45px">
                     <a class="intro-link" aria-current="page" href="#about">About</a>
                 </li>
-                <li style="display: inline-block; text-transform: uppercase; font-weight: bold; text-shadow: 2px 2px #000000; padding-right: 50px">
+                <li class="intro-li" style="padding-right: 45px">
                     <a class="intro-link" aria-current="page" href="#portfolio">Portfolio</a>
                 </li>
-                <li style="display: inline-block; text-transform: uppercase; font-weight: bold; text-shadow: 2px 2px #000000; padding-right: 50px">
+                <li class="intro-li" style="padding-right: 45px">
                     <a class="intro-link" aria-current="page" href="#contact">Contact</a>
                 </li>
-                <li style="display: inline-block; text-transform: uppercase; font-weight: bold; text-shadow: 2px 2px #000000; padding-right: 50px">
+                <li class="intro-li">
                     <a class="intro-link" aria-current="page" target="_blank" href="assets/André_Monteiro_CV.pdf">CV</a>
                 </li>
             </ul>
         </div>
     </div>
     <!-- About Me -->
-    <div class="siteSection" id="about">
+    <div class="siteSection" style="padding-top: 60px; margin-top: 15px" id="about">
         <div class="container">
             <h1 class="sectionHeader sectionHeader-text pb-4">About Me</h1>
             <p class="offset-md-2 col-md-8 pb-4">
@@ -87,8 +87,6 @@
             </p>
         </div>
     </div>
-    <br>
-    <br>
     <!-- Skills -->
     <div class="siteSection">
         <div class="container">
@@ -135,7 +133,7 @@
     </div>
     <br>
     <!-- Student Portfolio -->
-    <div class="siteSection" id="portfolio">
+    <div class="siteSection" style="padding-top: 60px; margin-top: 15px" id="portfolio">
         <div class="container">
             <div class="sectionHeader pb-4 pt-1">
                 <h1 class="p-0 m-0 sectionHeader-text">University Portfolio</h1>
