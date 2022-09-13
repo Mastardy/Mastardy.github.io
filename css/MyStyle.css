@@ -63,7 +63,7 @@ a:hover .project-image {
 }
 
 .navbar-link:hover {
-    background: #292929;
+    color: #60C689 !important;
 }
 
 .project-header {
