@@ -135,12 +135,24 @@ a:hover .project-image {
     background-color: rgba(20, 20, 20, 1);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
+    .mobile-intro {
+        visibility: visible !important;
+        clear: none !important;
+        display: inline !important;
+    }
+
     .intro {
         visibility: hidden;
         clear: both;
         display: none;
     }
+}
+
+.mobile-intro {
+    visibility: hidden;
+    clear: both;
+    display: none;
 }
 
 .intro-link {
