@@ -117,6 +117,22 @@ a:hover .project-image {
     color: #60C689;
 }
 
+.intro-li {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
+    margin: 0;
+}
+
+.intro-h1 {
+    font-size: 5rem;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
+}
+
 @keyframes fadeOut {
     from {opacity: 0}
     to {opacity: 1}
