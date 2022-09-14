@@ -30,6 +30,5 @@ window.onload = function() {
         headerSticky.classList.add('fadeOutDown');
         headerSticky.classList.remove('fadeInUp');
         headerSticky.classList.remove('fadeInUpFast');
-        return;
     }
 }
