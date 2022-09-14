@@ -89,6 +89,7 @@ h6 {
 
 .project-image {
     width: 95%;
+    aspect-ratio: 16/9;
     border-radius: 25px;
     transition-duration: 0.2s;
     transition-property: transform;
