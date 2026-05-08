@@ -3,62 +3,64 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="André Monteiro — Graphics Programmer, Game Developer, and Tools Engineer. Portfolio of professional and personal game development projects.">
 
     <title>André Monteiro - Portfolio</title>
 
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/MyStyle.css">
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="js/MainPageSwitch.js"></script>
+    <script src="./js/bootstrap.bundle.min.js" defer></script>
+    <script src="js/MainPageSwitch.js" defer></script>
+    <script src="js/ScrollReveal.js" defer></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top fadeInUpFast" id="headerSticky">
-        <div class="container">
-            <a style="color: #60C689" class="navbar-brand" href="index.html">ANDRÉ MONTEIRO</a>
-            <button aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle Navigation"
-                    class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggle" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarToggle">
-                <ul class="navbar-nav">
-                    <li class="nav-item me-2">
-                        <a class="nav-link active navbar-link" aria-current="page" href="#about">ABOUT</a>
-                    </li>
-                    <li class="nav-item me-2">
-                        <a class="nav-link active navbar-link" aria-current="page" href="#portfolio">PORTFOLIO</a>
-                    </li>
-                    <li class="nav-item me-2">
-                        <a class="nav-link active navbar-link" aria-current="page" href="#contact">CONTACT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active navbar-link" aria-current="page" target="_blank" href="assets/André_Monteiro_CV.pdf">CV</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- INTRO -->
-    <div class="intro container-fluid" style="opacity: 1; width: 100%; height: 100%; padding: 0;">
-        <video style="filter: brightness(0.5) blur(0.5rem);" autoplay muted loop class="backgroundVideo">
-            <source src="./assets/BackgroundVideo.mp4" type="video/mp4">
-        </video>
-        <div style="position: absolute; text-align: center; top: 50%; left:50%; z-index: 1" id="header">
-            <h1 class="intro-h1 fadeInOut" style="margin: 0; padding: 0">André Monteiro</h1>
-            <ul style="transform: translate(-50%, -50%); margin: 0; padding: 0;">
-        <p class="intro-subtitle">Graphics Programmer &nbsp;·&nbsp; Tools Engineer</p>
-                    <a class="intro-link" aria-current="page" href="#about">About</a>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top fadeInUpFast" id="headerSticky">
+    <div class="container">
+        <a style="color: #60C689" class="navbar-brand" href="index.html">ANDRÉ MONTEIRO</a>
+        <button aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle Navigation"
+                class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggle" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarToggle">
+            <ul class="navbar-nav">
+                <li class="nav-item me-2">
+                    <a class="nav-link active navbar-link" href="#about">ABOUT</a>
                 </li>
-                <li class="intro-li" style="padding-right: 45px">
-                    <a class="intro-link" aria-current="page" href="#portfolio">Portfolio</a>
+                <li class="nav-item me-2">
+                    <a class="nav-link active navbar-link" href="#portfolio">PORTFOLIO</a>
                 </li>
-                <li class="intro-li" style="padding-right: 45px">
-                    <a class="intro-link" aria-current="page" href="#contact">Contact</a>
+                <li class="nav-item me-2">
+                    <a class="nav-link active navbar-link" href="#contact">CONTACT</a>
                 </li>
-                <li class="intro-li">
-                    <a class="intro-link" aria-current="page" target="_blank" href="assets/André_Monteiro_CV.pdf">CV</a>
+                <li class="nav-item">
+                    <a class="nav-link active navbar-link" target="_blank" href="assets/André_Monteiro_CV.pdf">CV</a>
                 </li>
             </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- INTRO -->
+<div class="intro container-fluid" style="opacity: 1; width: 100%; height: 100%; padding: 0;">
+    <video style="filter: brightness(0.45) blur(0.4rem);" autoplay muted loop playsinline class="backgroundVideo">
+        <source src="./assets/BackgroundVideo.mp4" type="video/mp4">
+    </video>
+    <div style="position: absolute; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;" id="header">
+        <h1 class="intro-h1 fadeInOut">André Monteiro</h1>
+        <p class="intro-subtitle">Graphics Programmer &nbsp;·&nbsp; Tools Engineer</p>
+        <ul class="intro-nav">
+            <li class="intro-li"><a class="intro-link" href="#about">About</a></li>
+            <li class="intro-li"><a class="intro-link" href="#portfolio">Portfolio</a></li>
+            <li class="intro-li"><a class="intro-link" href="#contact">Contact</a></li>
+            <li class="intro-li"><a class="intro-link" target="_blank" href="assets/André_Monteiro_CV.pdf">CV</a></li>
+        </ul>
+    </div>
+</div>
+<div class="mobile-intro container-fluid" style="opacity: 1; padding: 0">
+    <img src="assets/bird.png" alt="game picture" style="filter: brightness(0.6) blur(0.2rem); width: 100%; height: auto">
+</div>
+
 <!-- About Me -->
 <div class="siteSection reveal" style="padding-top: 48px; margin-top: 20px" id="about">
     <div class="container">
@@ -75,214 +77,230 @@
         </p>
     </div>
 </div>
-        </div>
-    </div>
-    <br>
-    <!-- Skills -->
-    <div class="siteSection">
-        <div class="container">
-            <h1 class="sectionHeader sectionHeader-text">Skills</h1>
-            <br>
-            <div class="row">
-                <div class="col-xs-12 offset-md-2 col-md-2">
-                    <strong>Languages</strong>
-                    <ul class="list-inline text-center">
-                        <li>• C#</li>
-                        <li>• C++</li>
-                        <li>• JavaScript</li>
-                    </ul>
+
+<!-- Skills -->
+<div class="siteSection reveal">
+    <div class="container">
+        <h1 class="sectionHeader sectionHeader-text pb-4">Skills</h1>
+        <div class="skills-grid">
+            <div class="skill-group">
+                <div class="skill-group-title">Languages</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">JavaScript</span>
                 </div>
-                <div class="col-xs-12 col-md-2">
-                    <strong>Engines</strong>
-                    <ul class="list-inline text-center">
-                        <li>• Unity</li>
-                        <li>• Unreal</li>
-                        <li>• Source</li>
-                    </ul>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-title">Engines</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Unreal Engine 5</span>
+                    <span class="skill-tag">Unity</span>
+                    <span class="skill-tag">Source</span>
                 </div>
-                <div class="col-xs-12 col-md-3">
-                    <strong>Tools & Frameworks</strong>
-                    <ul class="list-inline text-center">
-                        <li>• Git</li>
-                        <li>• WPF / Avalonia</li>
-                        <li>• OpenGL</li>
-                    </ul>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-title">Graphics & Rendering</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">OpenGL</span>
+                    <span class="skill-tag">NVIDIA DLSS</span>
+                    <span class="skill-tag">NVIDIA Reflex</span>
                 </div>
-                <div class="col-xs-12 col-md-2">
-                    <strong>Fields</strong>
-                    <ul class="list-inline text-center">
-                        <li>• Graphics</li>
-                        <li>• Dev Tools</li>
-                        <li>• Game Engine</li>
-                    </ul>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-title">Tools & Frameworks</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">WPF / Avalonia</span>
+                    <span class="skill-tag">AR (Unity)</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-title">Specialization</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Computer Graphics</span>
+                    <span class="skill-tag">Developer Tools</span>
+                    <span class="skill-tag">3D Applications</span>
                 </div>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <div class="siteSection" style="padding-top: 60px; margin-top: 15px" id="portfolio">
-        <div class="container">
-            <div class="sectionHeader pb-4 pt-1">
-                <h1 class="p-0 m-0 sectionHeader-text" style="font-weight: bold">Professional Portfolio</h1>
-                <h6 class="p-0 m-0 sectionHeader-text" style="color: #bbbbbb">Click the images for more information</h6>
+</div>
+
+<!-- Professional Portfolio -->
+<div class="siteSection reveal" style="padding-top: 48px" id="portfolio">
+    <div class="container">
+        <div class="sectionHeader pb-4 pt-1">
+            <h1 class="p-0 m-0 sectionHeader-text" style="font-weight: bold">Professional</h1>
+            <h6 class="p-0 mt-2">Click a project for more details</h6>
+        </div>
+        <div class="row g-4">
+            <div class="col-sm-12 col-md-6">
+                <a class="project-card" href="./projects/lussa.html">
+                        <img class="mb-3 project-image" style="background: black" alt="Lussa" src="assets/Lussa.avif">
+                    <div>
+                        <span class="badge rounded-pill text-bg-primary">Unreal Engine 5</span>
+                        <span class="badge rounded-pill text-bg-primary">C++</span>
+                    </div>
+                    <h1 class="project-header">Lussa — The Final Frontier</h1>
+                    <p class="project-text">A multiplayer sci-fi shooter combining high-octane mobility with dynamic vertical combat. At Shadow Profile I implemented NVIDIA Reflex &amp; DLSS, optimized graphics performance, and built out weapons and character skills systems.</p>
+                </a>
             </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6 pb-5">
-                    <a href="./projects/lussa.html">
-                        <img class="mb-3 img-fluid project-image" style="background: black" alt="Lussa" src="assets/Lussa.avif">
-                    </a>
-                    <span class="badge rounded-pill text-bg-primary">Unreal Engine 5</span>
-                    <span class="badge rounded-pill text-bg-primary">C++</span>
-                    <h1 class="project-header mt-2">Lussa - The Final Frontier</h1>
-                    <p class="project-text">The Final Frontier is a multiplayer shooter that combines mobility with dynamic vertical combat. Set in a stunning sci-fi universe, players embark on an epic journey to secure humanity's survival amidst the chaos of a collapsing Earth.</p>
-                </div>
-                <div class="col-sm-12 col-md-6 pb-5">
-                    <a href="./projects/ixr.html">
-                        <img class="mb-3 img-fluid project-image" style="background: black" alt="IsraportXR" src="assets/Logo_IXR.jpg">
-                    </a>
-                    <span class="badge rounded-pill text-bg-primary">Unity</span>
-                    <span class="badge rounded-pill text-bg-primary">C#</span>
-                    <span class="badge rounded-pill text-bg-primary">AR</span>
-                    <h1 class="project-header mt-2">IsraportXR</h1>
-                    <p class="project-text">IsraportXR is a real-time multi-user AR visualization tool for home decoration.</p>
-                </div>
+            <div class="col-sm-12 col-md-6">
+                <a class="project-card" href="./projects/ixr.html">
+                        <img class="mb-3 project-image" style="background: black; object-fit: contain;" alt="IsraportXR" src="assets/Logo_IXR.jpg">
+                    <div>
+                        <span class="badge rounded-pill text-bg-primary">Unity</span>
+                        <span class="badge rounded-pill text-bg-primary">C#</span>
+                        <span class="badge rounded-pill text-bg-primary">AR</span>
+                    </div>
+                    <h1 class="project-header">IsraportXR</h1>
+                    <p class="project-text">A real-time multi-user AR visualization tool for home decoration, built at Shadow Profile in Unity. Multiple users can simultaneously view and interact with furniture placements in their physical space.</p>
+                </a>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <!-- Student Portfolio -->
-    <div class="siteSection">
-        <div class="container">
-            <div class="sectionHeader pb-4 pt-1">
-                <h1 class="p-0 m-0 sectionHeader-text">University Portfolio</h1>
-                <h6 class="p-0 m-0 sectionHeader-text">Click the images for more information</h6>
+</div>
+
+<!-- University Portfolio -->
+<div class="siteSection reveal">
+    <div class="container">
+        <div class="sectionHeader pb-4 pt-1">
+            <h1 class="p-0 m-0 sectionHeader-text">University</h1>
+            <h6 class="p-0 mt-2">Click a project for more details</h6>
+        </div>
+        <div class="row g-4">
+            <div class="col-sm-12 col-md-6">
+                <a class="project-card" href="./projects/caelum.html">
+                        <img class="mb-3 project-image" alt="Caelum" src="https://img.itch.zone/aW1nLzk2MTUwMzUucG5n/original/Ey678u.png">
+                    <div>
+                        <span class="badge rounded-pill text-bg-primary">Unity</span>
+                        <span class="badge rounded-pill text-bg-primary">C#</span>
+                        <span class="badge rounded-pill text-bg-primary">10 Members</span>
+                        <span class="badge rounded-pill text-bg-primary">3 Months</span>
+                    </div>
+                    <h1 class="project-header">Caelum</h1>
+                    <p class="project-text">Singleplayer/Co-op survival game where players must survive and explore a world of fragmented floating islands.</p>
+                </a>
             </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6 pb-5">
-                    <a href="./projects/caelum.html">
-                        <img class="mb-3 img-fluid project-image" alt="Caelum" src="https://img.itch.zone/aW1nLzk2MTUwMzUucG5n/original/Ey678u.png">
-                    </a>
-                    <span class="badge rounded-pill text-bg-primary">Unity</span>
-                    <span class="badge rounded-pill text-bg-primary">C#</span>
-                    <span class="badge rounded-pill text-bg-primary">10 Members</span>
-                    <span class="badge rounded-pill text-bg-primary">3 Months</span>
-                    <h1 class="project-header mt-2">Caelum</h1>
-                    <p class="project-text">Caelum is Singleplayer/Co-op  survival game where the player has to survive and explore a world made of fragmented floating islands.</p>
-                </div>
-                <div class="col-sm-12 col-md-6 pb-5">
-                    <a href="./projects/ctrlesc.html">
-                        <img class="mb-3 img-fluid project-image" alt="Ctrl/Esc" src="https://img.itch.zone/aW1nLzYzNTQ2NzEucG5n/original/hLtEme.png">
-                    </a>
-                    <span class="badge rounded-pill text-bg-primary">Unity</span>
-                    <span class="badge rounded-pill text-bg-primary">C#</span>
-                    <span class="badge rounded-pill text-bg-primary">6 Members</span>
-                    <span class="badge rounded-pill text-bg-primary">6 Weeks</span>
-                    <h1 class="project-header mt-2">Ctrl/Esc</h1>
-                    <p class="project-text">Ctrl/Esc is a Survival Horror Game. You're a technician working in a school during the holidays when weird stuff starts to happen.</p>
-                </div>
-                <div class="col-sm-12 col-md-6 pb-5">
-                    <a href="./projects/mutantpizzas.html">
-                        <img class="mb-3 img-fluid project-image" alt="Mutant Pizzas" src="https://img.itch.zone/aW1nLzU4NTc4ODUucG5n/original/5Auf%2Bi.png">
-                    </a>
-                    <span class="badge rounded-pill text-bg-primary">Unity</span>
-                    <span class="badge rounded-pill text-bg-primary">C#</span>
-                    <span class="badge rounded-pill text-bg-primary">3 Members</span>
-                    <span class="badge rounded-pill text-bg-primary">3 Weeks</span>
-                    <h1 class="project-header mt-2">Mutant Pizzas</h1>
-                    <p class="project-text">Mutant Pizzas is a "Plants Versus Zombies" clone featuring different unicorns that fight against mutant pizzas.</p>
-                </div>
-                <div class="col-sm-12 col-md-6 pb-5">
-                    <a href="./projects/gladeparty.html">
-                        <img class="mb-3 img-fluid project-image" alt="Glade Party" src="https://img.itch.zone/aW1hZ2UvMTM4MzY4My84MDU5NzI1LnBuZw==/original/N1md0e.png">
-                    </a>
-                    <span class="badge rounded-pill text-bg-primary">Unity</span>
-                    <span class="badge rounded-pill text-bg-primary">C#</span>
-                    <span class="badge rounded-pill text-bg-primary">6 Members</span>
-                    <span class="badge rounded-pill text-bg-primary">4 Months</span>
-                    <h1 class="project-header mt-2">Glade Party (W.I.P.)</h1>
-                    <p class="project-text">Glade Party is a Couch-Multiplayer Party Game like Mario Party or Pummel Party. You can choose up to Eight different characters and play several minigames!</p>
-                </div>
+            <div class="col-sm-12 col-md-6">
+                <a class="project-card" href="./projects/ctrlesc.html">
+                        <img class="mb-3 project-image" alt="Ctrl/Esc" src="https://img.itch.zone/aW1nLzYzNTQ2NzEucG5n/original/hLtEme.png">
+                    <div>
+                        <span class="badge rounded-pill text-bg-primary">Unity</span>
+                        <span class="badge rounded-pill text-bg-primary">C#</span>
+                        <span class="badge rounded-pill text-bg-primary">6 Members</span>
+                        <span class="badge rounded-pill text-bg-primary">6 Weeks</span>
+                    </div>
+                    <h1 class="project-header">Ctrl/Esc</h1>
+                    <p class="project-text">Survival horror game set in a school at night. You're a technician working during the holidays when things start to go wrong.</p>
+                </a>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <a class="project-card" href="./projects/mutantpizzas.html">
+                        <img class="mb-3 project-image" alt="Mutant Pizzas" src="https://img.itch.zone/aW1nLzU4NTc4ODUucG5n/original/5Auf%2Bi.png">
+                    <div>
+                        <span class="badge rounded-pill text-bg-primary">Unity</span>
+                        <span class="badge rounded-pill text-bg-primary">C#</span>
+                        <span class="badge rounded-pill text-bg-primary">3 Members</span>
+                        <span class="badge rounded-pill text-bg-primary">3 Weeks</span>
+                    </div>
+                    <h1 class="project-header">Mutant Pizzas</h1>
+                    <p class="project-text">A Plants vs. Zombies–style tower defense clone where unicorns battle against mutant pizzas.</p>
+                </a>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <a class="project-card" href="./projects/gladeparty.html">
+                        <img class="mb-3 project-image" alt="Glade Party" src="https://img.itch.zone/aW1hZ2UvMTM4MzY4My84MDU5NzI1LnBuZw==/original/N1md0e.png">
+                    <div>
+                        <span class="badge rounded-pill text-bg-primary">Unity</span>
+                        <span class="badge rounded-pill text-bg-primary">C#</span>
+                        <span class="badge rounded-pill text-bg-primary">6 Members</span>
+                        <span class="badge rounded-pill text-bg-primary">4 Months</span>
+                    </div>
+                    <h1 class="project-header">Glade Party</h1>
+                    <p class="project-text">Couch-Multiplayer party game in the style of Mario Party — up to eight players, multiple characters, and a set of minigames.</p>
+                </a>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <!-- Personal Portfolio -->
-    <div class="siteSection">
-        <div class="container">
-            <div class="sectionHeader pb-4 pt-1">
-                <h1 class="p-0 m-0 sectionHeader-text" style="font-weight: bold">Personal Portfolio</h1>
-                <h6 class="p-0 m-0 sectionHeader-text" style="color: #bbbbbb">Click the images for more information</h6>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-sm-12 col-md-6 pb-5">
-                    <a href="./projects/plonqcraft.html">
-                        <img class="mb-3 img-fluid project-image" style="background: black" alt="ZinaoCraft" src="assets/PlonqCraft.png">
-                    </a>
-                    <span class="badge rounded-pill text-bg-primary">OpenGL</span>
-                    <span class="badge rounded-pill text-bg-primary">C++</span>
-                    <span class="badge rounded-pill text-bg-primary">1 Member</span>
-                    <span class="badge rounded-pill text-bg-primary">W.I.P</span>
-                    <h1 class="project-header mt-2">PlonqCraft</h1>
-                    <p class="project-text">PlonqCraft is a Voxel Ray Tracer being developed by myself using OpenGL & compute shaders.</p>
-                </div>
+</div>
+
+<!-- Personal Portfolio -->
+<div class="siteSection reveal">
+    <div class="container">
+        <div class="sectionHeader pb-4 pt-1">
+            <h1 class="p-0 m-0 sectionHeader-text" style="font-weight: bold">Personal</h1>
+            <h6 class="p-0 mt-2">Click a project for more details</h6>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-sm-12 col-md-6">
+                <a class="project-card" href="./projects/plonqcraft.html">
+                        <img class="mb-3 project-image" style="background: black" alt="PlonqCraft" src="assets/PlonqCraft.png">
+                    <div>
+                        <span class="badge rounded-pill text-bg-primary">OpenGL</span>
+                        <span class="badge rounded-pill text-bg-primary">C++</span>
+                        <span class="badge rounded-pill text-bg-primary">Solo</span>
+                        <span class="badge rounded-pill text-bg-primary">In Development</span>
+                    </div>
+                    <h1 class="project-header">PlonqCraft</h1>
+                    <p class="project-text">A real-time voxel ray tracer built from scratch in C++ using OpenGL compute shaders.</p>
+                </a>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <!-- Contact Me -->
-    <div class="siteSection pb-4" id="contact">
-        <div class="container">
-            <h1 class="sectionHeader sectionHeader-text">Contact</h1>
-            <p><b>Discord: </b>Mastardy1511#9299</p>
-            <p><b>Email: </b> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=andremgmonteiro01@gmail.com" target="_blank">andremgmonteiro01@gmail.com</a></p>
-            <br>
-            <ul class="nav justify-content-center">
-                <li class="me-3">
-                    <a href="https://steamcommunity.com/id/Mastardy1511/" target="_blank">
-                        <img alt="steam" style="filter: brightness(0) invert(1)" src="https://cdn-icons-png.flaticon.com/512/3/3782.png" width="40" height="40">
-                    </a>
-                </li>
-                <li class="me-3">
-                    <a href="https://twitter.com/Mastardy1" target="_blank">
-                        <img alt="twitter" style="filter: brightness(0) invert(1)" src="https://cdn-icons-png.flaticon.com/512/81/81609.png" width="40" height="40">
-                    </a>
-                </li>
-                <li class="me-3">
-                    <a href="https://mastardy.itch.io" target="_blank">
-                        <img alt="itch.io" src="https://assets.ifttt.com/images/channels/586796884/icons/large.png" width="40" height="40">
-                    </a>
-                </li>
-                <li class="me-3">
-                    <a href="https://github.com/Mastardy" target="_blank">
-                        <img alt="github" style="filter: brightness(0) invert(1)" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="40" height="40">
-                    </a>
-                </li>
-                <li class="me-3">
-                    <a href="https://gitlab.com/Mastardy" target="_blank">
-                        <img alt="gitlab" style="filter: brightness(0) invert(1)" src="https://miro.medium.com/max/630/1*rXQwmGazoXXpH6E6_53j3A.png" width="40" height="40">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/andré-monteiro-2a2865233/" target="_blank">
-                        <img alt="linkedin" style="filter: brightness(0) invert(1)" src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" width="40" height="40">
-                    </a>
-                </li>
-            </ul>
-        </div>
+</div>
+
+<!-- Contact -->
+<div class="siteSection reveal pb-4" id="contact">
+    <div class="container">
+        <h1 class="sectionHeader sectionHeader-text pb-3">Contact</h1>
+        <p class="mb-1"><b>Email: </b>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=andremgmonteiro01@gmail.com" target="_blank">andremgmonteiro01@gmail.com</a>
+        </p>
+        <p class="mb-4"><b>Discord: </b><span style="color: #b8b8b8;">mastardy1511</span></p>
+        <ul class="nav justify-content-center" style="gap: 4px;">
+            <li>
+                <a class="contact-icon-link" href="https://github.com/Mastardy" target="_blank">
+                    <img alt="GitHub" style="filter: brightness(0) invert(1)" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="36" height="36">
+                    <span class="contact-icon-label">GitHub</span>
+                </a>
+            </li>
+            <li>
+                <a class="contact-icon-link" href="https://www.linkedin.com/in/andr%C3%A9-monteiro-2a2865233/" target="_blank">
+                    <img alt="LinkedIn" style="filter: brightness(0) invert(1)" src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" width="36" height="36">
+                    <span class="contact-icon-label">LinkedIn</span>
+                </a>
+            </li>
+            <li>
+                <a class="contact-icon-link" href="https://gitlab.com/Mastardy" target="_blank">
+                    <svg width="36" height="36" viewBox="0 0 24 24" style="filter: brightness(0) invert(0.6)" fill="#E24329">
+                        <path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"/>
+                    </svg>
+                    <span class="contact-icon-label">GitLab</span>
+                </a>
+            </li>
+            <li>
+                <a class="contact-icon-link" href="https://mastardy.itch.io" target="_blank">
+                    <img alt="itch.io" src="https://assets.ifttt.com/images/channels/586796884/icons/large.png" width="36" height="36" style="border-radius: 4px;">
+                    <span class="contact-icon-label">Itch.io</span>
+                </a>
+            </li>
+            <li>
+                <a class="contact-icon-link" href="https://steamcommunity.com/id/Mastardy1511/" target="_blank">
+                    <img alt="Steam" style="filter: brightness(0) invert(1)" src="https://cdn-icons-png.flaticon.com/512/3/3782.png" width="36" height="36">
+                    <span class="contact-icon-label">Steam</span>
+                </a>
+            </li>
+        </ul>
     </div>
-    <br>
-    <br>
-    <br>
-    <!-- Footer -->
-    <div class="container-fluid footer">
-        <footer class="py-3">
-            <div class="border-top pb-2"></div>
-            <p>Copyright © 2025 by André Monteiro</p>
-        </footer>
-    </div>
+</div>
+
+<!-- Footer -->
+<div class="container-fluid footer">
+    <footer class="pb-1 pt-2">
+        <p style="font-size: 0.85rem; color: #444;">Copyright © 2026 André Monteiro</p>
+    </footer>
+</div>
 </body>
 </html>
