@@ -52,7 +52,6 @@ h6 {
     letter-spacing: 0.04em;
 }
 
-/* --- NAVIGATION --- */
 #about, #portfolio, #contact {
     scroll-margin-top: 70px;
 }
@@ -67,7 +66,6 @@ h6 {
     color: #60C689 !important;
 }
 
-/* --- HERO / INTRO --- */
 .backgroundVideo {
     width: 100%;
     height: 100%;
@@ -129,10 +127,9 @@ h6 {
     padding-right: 0;
 }
 
-/* --- SITE SECTIONS --- */
 .siteSection {
-    width: 82%;
-    max-width: 1080px;
+    width: 70%;
+    max-width: 70%;
     margin: 40px auto;
     padding: 44px 36px;
     background: rgba(255, 255, 255, 0.025);
@@ -145,7 +142,14 @@ h6 {
     border-color: rgba(96, 198, 137, 0.14);
 }
 
-/* --- SECTION HEADERS --- */
+.siteSection.project {
+    background: rgba(32, 32, 32, 0.9);
+    border-radius: 0;
+    height: 100%;
+    margin-bottom: 0;
+    border-width: 0;
+}
+
 .sectionHeader {
     margin: 0 auto 24px;
 }
@@ -166,7 +170,6 @@ h6 {
     border-radius: 2px;
 }
 
-/* --- SKILLS --- */
 .skills-grid {
     display: flex;
     flex-direction: row;
@@ -177,7 +180,7 @@ h6 {
 }
 
 .skill-group {
-    min-width: 120px;
+    min-width: 160px;
 }
 
 .skill-group-title {
@@ -215,7 +218,6 @@ h6 {
     color: #c5edcf;
 }
 
-/* --- PROJECT CARDS --- */
 .project-card {
     display: block;
     text-decoration: none;
@@ -240,13 +242,11 @@ h6 {
     width: 100%;
     aspect-ratio: 16/9;
     border-radius: 10px;
-    transition: transform 0.25s, box-shadow 0.25s;
     object-fit: cover;
     display: block;
 }
 
 a:hover .project-image {
-    transform: scale(1.02);
     box-shadow: 0 6px 28px rgba(96, 198, 137, 0.18);
 }
 
@@ -266,7 +266,6 @@ a:hover .project-image {
     margin: 0;
 }
 
-/* Override Bootstrap badge colors to match theme */
 .badge.text-bg-primary {
     background-color: rgba(96, 198, 137, 0.1) !important;
     color: #7fd9a3 !important;
@@ -275,7 +274,6 @@ a:hover .project-image {
     letter-spacing: 0.03em;
 }
 
-/* --- CONTACT --- */
 .contact-icon-link {
     display: flex;
     flex-direction: column;
@@ -310,12 +308,10 @@ a:hover .project-image {
     text-transform: uppercase;
 }
 
-/* --- FOOTER --- */
 .footer {
     background-color: rgba(12, 12, 12, 1);
 }
 
-/* --- MOBILE --- */
 @media screen and (max-width: 1280px) {
     .mobile-intro {
         visibility: visible !important;
@@ -369,7 +365,6 @@ a:hover .project-image {
     }
 }
 
-/* --- TABLE (project detail pages) --- */
 .tdLeft {
     padding: 6px 12px;
     color: #60C689;
@@ -384,17 +379,19 @@ a:hover .project-image {
     font-size: 0.95rem;
 }
 
-/* --- ITCH.IO FRAME --- */
 .itch-io-frame {
     --itch-io-frame-size: 2;
     width: calc(552px * var(--itch-io-frame-size));
     height: calc(167px * var(--itch-io-frame-size));
 }
 
-/* --- ANIMATIONS (used by MainPageSwitch.js — do not rename) --- */
 @keyframes fadeOut {
-    from { opacity: 0 }
-    to { opacity: 1 }
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
 }
 
 .fadeOut {
@@ -402,8 +399,12 @@ a:hover .project-image {
 }
 
 @keyframes fadeIn {
-    from { opacity: 1 }
-    to { opacity: 0 }
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
 }
 
 .fadeIn {
@@ -411,8 +412,14 @@ a:hover .project-image {
 }
 
 @keyframes fadeOutDown {
-    0%   { opacity: 0; top: -25px }
-    100% { opacity: 1; top: 0 }
+    0% {
+        opacity: 0;
+        top: -25px
+    }
+    100% {
+        opacity: 1;
+        top: 0
+    }
 }
 
 .fadeOutDown {
@@ -420,8 +427,14 @@ a:hover .project-image {
 }
 
 @keyframes fadeInUp {
-    from { opacity: 1; top: 0 }
-    to   { opacity: 0; top: -25px }
+    from {
+        opacity: 1;
+        top: 0
+    }
+    to {
+        opacity: 0;
+        top: -25px
+    }
 }
 
 .fadeInUp {
@@ -432,11 +445,10 @@ a:hover .project-image {
     animation: fadeInUp .01s forwards;
 }
 
-/* --- FONTS --- */
 @font-face {
     font-family: 'robotoblack';
     src: url('font/roboto-black-webfont.woff2') format('woff2'),
-         url('font/roboto-black-webfont.woff') format('woff');
+    url('font/roboto-black-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -444,7 +456,7 @@ a:hover .project-image {
 @font-face {
     font-family: 'robotobold';
     src: url('font/roboto-bold-webfont.woff2') format('woff2'),
-         url('font/roboto-bold-webfont.woff') format('woff');
+    url('font/roboto-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -452,7 +464,7 @@ a:hover .project-image {
 @font-face {
     font-family: 'robotolight';
     src: url('font/roboto-light-webfont.woff2') format('woff2'),
-         url('font/roboto-light-webfont.woff') format('woff');
+    url('font/roboto-light-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -460,7 +472,7 @@ a:hover .project-image {
 @font-face {
     font-family: 'robotomedium';
     src: url('font/roboto-medium-webfont.woff2') format('woff2'),
-         url('font/roboto-medium-webfont.woff') format('woff');
+    url('font/roboto-medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -468,7 +480,7 @@ a:hover .project-image {
 @font-face {
     font-family: 'robotoregular';
     src: url('font/roboto-regular-webfont.woff2') format('woff2'),
-         url('font/roboto-regular-webfont.woff') format('woff');
+    url('font/roboto-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -476,7 +488,7 @@ a:hover .project-image {
 @font-face {
     font-family: 'robotothin';
     src: url('font/roboto-thin-webfont.woff2') format('woff2'),
-         url('font/roboto-thin-webfont.woff') format('woff');
+    url('font/roboto-thin-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
