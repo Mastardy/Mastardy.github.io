@@ -63,58 +63,61 @@
          style="filter: brightness(0.6) blur(0.2rem); width: 100%; height: auto">
 </div>
 
-<!-- About Me -->
-<div class="siteSection" style="padding-top: 48px; margin-top: 20px" id="about">
-    <div class="container">
-        <h1 class="sectionHeader sectionHeader-text pb-4">About Me</h1>
-        <p class="offset-md-2 col-md-8 pb-2" style="margin: 0 auto;">
-            Hello, I'm <b>André</b>, also known as <b>Mastardy</b>. I'm currently a Software Developer at
-            <a href="https://www.edigma.com" target="_blank">EDIGMA</a> since Oct 2025, building 3D interactive applications
-            across a variety of projects. Before that, I spent two years at
-            <a href="https://www.shadowprofile.pt" target="_blank">Shadow Profile</a> working on many games. I'm also
-            finishing a master's in <b>Game Development Engineering</b>.<br><br>
-            With a focus on Computer Graphics, 3D application development, and Developer Tooling, I'm passionate
-            about building the platforms and systems that let other developers craft better experiences.<br><br>
-            Let me show you my work!
-        </p>
+<!-- About + Skills row -->
+<div class="siteSection-row" style="margin-top: 20px;">
+    <!-- About Me -->
+    <div class="siteSection" style="padding-top: 48px;" id="about">
+        <div class="container">
+            <h1 class="sectionHeader sectionHeader-text pb-4">About Me</h1>
+            <p class="pb-2">
+                Hello, I'm <b>André</b>, also known as <b>Mastardy</b>. I'm currently a Software Developer at
+                <a href="https://www.edigma.com" target="_blank">EDIGMA</a> since Oct 2025, building 3D interactive
+                applications across a variety of projects. Before that, I spent two years at
+                <b>Shadow Profile</b> working on many games.<br><br>
+                With a focus on Computer Graphics, 3D application development, and Developer Tooling, I'm passionate
+                about building the platforms and systems that let other developers craft better experiences.<br><br>
+                Right now I'm building a real-time solar system simulator in Unity. Data-Oriented Design, Keplerian
+                orbits, 100,000+ asteroids and floating-origin precision are a few of its challenges. Check out my work!
+            </p>
+        </div>
     </div>
-</div>
 
-<!-- Skills -->
-<div class="siteSection">
-    <div class="container">
-        <h1 class="sectionHeader sectionHeader-text pb-4">Skills</h1>
-        <div class="skills-grid">
-            <div class="skill-group">
-                <div class="skill-group-title">Languages</div>
-                <div class="skill-tags">
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">C#</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">TypeScript</span>
+    <!-- Skills -->
+    <div class="siteSection">
+        <div class="container">
+            <h1 class="sectionHeader sectionHeader-text pb-4">Skills</h1>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <div class="skill-group-title">Languages</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TypeScript</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Engines</div>
-                <div class="skill-tags">
-                    <span class="skill-tag">Unity</span>
-                    <span class="skill-tag">Unreal Engine 5</span>
+                <div class="skill-group">
+                    <div class="skill-group-title">Specialization</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">3D Applications</span>
+                        <span class="skill-tag">Developer Tools</span>
+                        <span class="skill-tag">Computer Graphics</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Tools & Frameworks</div>
-                <div class="skill-tags">
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Qt 6</span>
-                    <span class="skill-tag">OpenGL</span>
+                <div class="skill-group">
+                    <div class="skill-group-title">Tools & Frameworks</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Qt 6</span>
+                        <span class="skill-tag">OpenGL</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Specialization</div>
-                <div class="skill-tags">
-                    <span class="skill-tag">3D Applications</span>
-                    <span class="skill-tag">Developer Tools</span>
-                    <span class="skill-tag">Computer Graphics</span>
+                <div class="skill-group">
+                    <div class="skill-group-title">Engines</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Unity</span>
+                        <span class="skill-tag">Unreal Engine 5</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -277,14 +280,16 @@
                     <img class="mb-3 project-image" style="background: black" alt="Game Boy Emulator"
                          src="assets/placeholder.png">
                     <div>
-                        <span class="badge rounded-pill text-bg-primary">C++23</span>
+                        <span class="badge rounded-pill text-bg-primary">C++</span>
                         <span class="badge rounded-pill text-bg-primary">Solo</span>
                         <span class="badge rounded-pill text-bg-primary">Emulation</span>
                     </div>
                     <h1 class="project-header">Game Boy Emulator</h1>
-                    <p class="project-text">A cycle-accurate Game Boy emulator written in C++23. Full Sharp LR35902 CPU
-                        instruction set with accurate flag and timing behaviour, plus an integrated debugger and VRAM
-                        viewer for tile/tilemap inspection.</p>
+                    <p class="project-text">
+                        A cycle-accurate Game Boy emulator written in Modern C++. Full Sharp LR35902 CPU instruction set
+                        with accurate flag and timing behaviour, plus an integrated debugger and VRAM viewer for
+                        tile/tilemap inspection.
+                    </p>
                 </a>
             </div>
             <div class="col-sm-12 col-md-6">
@@ -305,8 +310,7 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <a class="project-card" href="./projects/wstl.html">
-                    <img class="mb-3 project-image" style="background: black" alt="WSTL"
-                         src="assets/placeholder.png">
+                    <img class="mb-3 project-image" style="background: black" alt="WSTL" src="assets/WSTL.svg">
                     <div>
                         <span class="badge rounded-pill text-bg-primary">C++</span>
                         <span class="badge rounded-pill text-bg-primary">Solo</span>

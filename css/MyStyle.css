@@ -150,6 +150,45 @@ h6 {
     border-width: 0;
 }
 
+.siteSection-row {
+    width: 70%;
+    max-width: 70%;
+    margin: 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.siteSection-row > .siteSection {
+    flex: 1 1 0;
+    width: auto;
+    max-width: none;
+    margin: 0;
+}
+
+.siteSection-row > #about {
+    flex: 2 1 0;
+}
+
+.siteSection-row > #about > .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.siteSection-row > #about > .container > p {
+    margin: auto 0;
+}
+
+@media (max-width: 991px) {
+    .siteSection-row {
+        width: 90%;
+        max-width: 90%;
+        flex-direction: column;
+    }
+}
+
 .sectionHeader {
     margin: 0 auto 24px;
 }
@@ -493,3 +532,5 @@ a:hover .project-image {
     font-weight: normal;
     font-style: normal;
 }
+
+

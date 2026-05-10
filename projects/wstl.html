@@ -65,7 +65,7 @@
         </table>
 
         <!-- Teaser -->
-        <img style="width: 80%; padding-top: 15px" alt="Teaser" src="../assets/placeholder.png">
+        <img style="width: 80%; padding-top: 15px" alt="WSTL logo" src="../assets/WSTL.svg">
 
         <!-- About -->
         <h2 class="sectionHeader-text pt-4 pb-2">About</h2>
@@ -81,6 +81,78 @@
             <div class="offset-md-2 col-md-8">
                 <strong>Developer</strong>
                 <p>As the only developer, I'm responsible for the making of everything.</p>
+            </div>
+        </div>
+
+        <!-- Showcase -->
+        <h2 class="sectionHeader-text pt-4 pb-2">Modules</h2>
+        <div class="accordion" id="wstlAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingContainers">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContainers" aria-expanded="false" aria-controls="collapseContainers">
+                        Containers
+                    </button>
+                </h2>
+                <div id="collapseContainers" class="accordion-collapse collapse" aria-labelledby="headingContainers" data-bs-parent="#wstlAccordion">
+                    <div class="accordion-body">
+                        <p>The bulk of the library. Split into four families:</p>
+                        <ul class="text-start" style="display: inline-block;">
+                            <li><strong>Sequence</strong> — Array, Vector, List, SList, Deque, BitSet</li>
+                            <li><strong>Associative</strong> — Map, Set, HashMap, BinaryHeap (backed by an internal RBTree)</li>
+                            <li><strong>Adapters</strong> — Stack, Queue, PriorityQueue</li>
+                            <li><strong>Fixed-capacity</strong> — FixedVector for stack-allocated, bounded storage</li>
+                        </ul>
+                        <pre class="text-start"><code>WSTL::Vector&lt;int&gt; nums;
+nums.PushBack(1);
+nums.PushBack(2);
+
+WSTL::HashMap&lt;WSTL::String, int&gt; scores;
+scores["andre"] = 42;</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingMemory">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMemory" aria-expanded="false" aria-controls="collapseMemory">
+                        Memory
+                    </button>
+                </h2>
+                <div id="collapseMemory" class="accordion-collapse collapse" aria-labelledby="headingMemory" data-bs-parent="#wstlAccordion">
+                    <div class="accordion-body">
+                        <p>Allocator interface plus the three smart-pointer flavours: <strong>UniquePointer</strong>, <strong>SharedPointer</strong>, and <strong>WeakPointer</strong>. Allocators are pluggable so containers can be tuned for arena/pool strategies in WCGE.</p>
+                        <pre class="text-start"><code>auto p = WSTL::MakeUnique&lt;Player&gt;("Gaby");
+auto s = WSTL::MakeShared&lt;World&gt;();
+WSTL::WeakPointer&lt;World&gt; w = s;</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingUtility">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUtility" aria-expanded="false" aria-controls="collapseUtility">
+                        Utility
+                    </button>
+                </h2>
+                <div id="collapseUtility" class="accordion-collapse collapse" aria-labelledby="headingUtility" data-bs-parent="#wstlAccordion">
+                    <div class="accordion-body">
+                        <p>Cross-cutting helpers: <strong>Pair</strong>, <strong>Optional</strong>, <strong>Any</strong>, <strong>TypeTraits</strong>, and a <strong>Hash</strong> facility with a <code>HasCustomHash</code> SFINAE check that lets user types opt in to hashing without specialising a template.</p>
+                        <pre class="text-start"><code>struct Id { int v; uint64_t Hash() const { return v; } };
+static_assert(WSTL::HasCustomHash&lt;Id&gt;);
+
+WSTL::Optional&lt;int&gt; find(int key);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingCore">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCore" aria-expanded="false" aria-controls="collapseCore">
+                        Core
+                    </button>
+                </h2>
+                <div id="collapseCore" class="accordion-collapse collapse" aria-labelledby="headingCore" data-bs-parent="#wstlAccordion">
+                    <div class="accordion-body">
+                        <p>Foundational primitives the rest of the library is built on: fixed-width integer types, the <code>var</code> alias, and the base <code>Hash</code> trait used by associative containers.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
