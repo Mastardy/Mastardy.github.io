@@ -9,6 +9,19 @@
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/MyStyle.css" rel="stylesheet">
     <script src="../js/bootstrap.bundle.min.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            const root = document.getElementById('wcgeAccordion');
+            if (!root) return;
+            root.querySelectorAll('.accordion-collapse').forEach(panel => {
+                panel.addEventListener('show.bs.collapse', () => {
+                    root.querySelectorAll('.accordion-collapse.show').forEach(other => {
+                        if (other !== panel) bootstrap.Collapse.getOrCreateInstance(other).hide();
+                    });
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <!-- Navigation Bar -->
@@ -50,12 +63,12 @@
                 <td class="tdRight">Personal Project</td>
             </tr>
             <tr>
-                <td class="tdLeft"><b>Software Used:</b></td>
-                <td class="tdRight">OpenGL, Modern C++</td>
+                <td class="tdLeft"><b>Frameworks Used:</b></td>
+                <td class="tdRight">OpenGL, GLFW</td>
             </tr>
             <tr>
                 <td class="tdLeft"><b>Languages Used:</b></td>
-                <td class="tdRight">C++</td>
+                <td class="tdRight">Modern C++</td>
             </tr>
             <tr>
                 <td class="tdLeft"><b>Roles:</b></td>
@@ -64,12 +77,17 @@
             </tbody>
         </table>
 
+        <!-- Teaser -->
+        <img style="width: 60%; margin-top: 32px; margin-bottom: 32px"
+             alt="WCGE preview" src="../assets/wcge.png">
+
         <!-- About -->
         <h2 class="sectionHeader-text pt-4 pb-2">About</h2>
         <p class="offset-md-2 col-md-8" style="margin: 0 auto;">
-            WCGE is a game engine being written from scratch in modern C++ and OpenGL. It includes a math library
-            optimized for games, an OpenGL abstraction layer that hides the boilerplate and exposes a much easier-to-use
-            graphics API, and is built to integrate my personal STL (WSTL) as a real-world showcase of its capabilities.
+            WCGE (W Custom Game Engine) is a Windows-only game engine written from scratch in modern C++ with OpenGL
+            as its renderer. It ships as a DLL consumed by a separate <code>Sandbox</code> client app, owns its own
+            <code>main</code> entry point, and is built around a hand-rolled math library, an OpenGL abstraction layer,
+            and an entity-component architecture. It is also the showcase target for my custom STL (WSTL).
         </p>
 
         <!-- Role -->
@@ -81,12 +99,217 @@
             </div>
         </div>
 
-        <!-- Showcase -->
-        <h2 class="sectionHeader-text pt-4 pb-2">Showcase</h2>
-        <h1 style="color: #FF0000">(W.I.P)</h1>
+        <!-- Modules -->
+        <h2 class="sectionHeader-text pt-4 pb-3">Modules</h2>
+        <div class="accordion" id="wcgeAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingApp">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseApp" aria-expanded="false" aria-controls="collapseApp">
+                        Application & Entry Point
+                    </button>
+                </h2>
+                <div id="collapseApp" class="accordion-collapse collapse" aria-labelledby="headingApp"
+                     data-bs-parent="#wcgeAccordion">
+                    <div class="accordion-body">
+                        <p>The engine owns <code>main</code>, not the client. Clients subclass
+                            <strong>WCGE::Application</strong>, implement the free function
+                            <code>WCGE::CreateApplication()</code>, and include <code>EntryPoint.hpp</code> in exactly
+                            one translation unit. <code>Application::Run()</code> drives the engine loop and dispatches
+                            <code>Start()</code>, <code>Update()</code>, and <code>LateUpdate()</code> virtuals that
+                            subclasses override. The engine builds as a DLL: public symbols are tagged with the
+                            <code>WCGE_API</code> macro, which expands to <code>__declspec(dllexport)</code> on the
+                            engine side and <code>__declspec(dllimport)</code> on the client side.</p>
+                        <pre class="code-block"><span class="kw">class</span> <span class="ty">Sandbox</span> : <span class="kw">public</span> WCGE::<span class="ty">Application</span> {
+    <span class="kw">void</span> <span class="kw">Start</span>() <span class="kw">override</span> { <span class="cm">/* ... */</span> }
+    <span class="kw">void</span> <span class="kw">Update</span>() <span class="kw">override</span> { <span class="cm">/* ... */</span> }
+};
+
+WCGE::<span class="ty">Application</span>* WCGE::<span class="kw">CreateApplication</span>() {
+    <span class="kw">return</span> <span class="kw">new</span> <span class="ty">Sandbox</span>();
+}</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingCore">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseCore" aria-expanded="false" aria-controls="collapseCore">
+                        Core
+                    </button>
+                </h2>
+                <div id="collapseCore" class="accordion-collapse collapse" aria-labelledby="headingCore"
+                     data-bs-parent="#wcgeAccordion">
+                    <div class="accordion-body">
+                        <p>The foundation the rest of the engine sits on. Split across three fronts:</p>
+                        <ul class="module-families">
+                            <li><span class="family-label">Math</span>Hand-rolled <strong>Vector2/3/4</strong>,
+                                <strong>Matrix3/4</strong>, <strong>Rect</strong>, plus <strong>Random</strong> and
+                                generic <strong>Util</strong> helpers — no GLM, no external dependencies
+                            </li>
+                            <li><span class="family-label">Logging</span>A logger for engine and client channels with
+                                severity levels, used across every subsystem
+                            </li>
+                            <li><span class="family-label">Time</span>Frame timing and delta-time tracking that the
+                                engine loop feeds into <code>Update</code> calls
+                            </li>
+                        </ul>
+                        <pre class="code-block"><span class="kw">using namespace</span> WCGE::<span class="ty">Math</span>;
+<span class="ty">Vector3</span> position{ <span class="num">0.0f</span>, <span class="num">1.0f</span>, <span class="num">0.0f</span> };
+<span class="ty">Matrix4</span> model = <span class="ty">Matrix4</span>::<span class="kw">Translate</span>(position);
+<span class="kw">float</span> dt = WCGE::<span class="ty">Time</span>::<span class="kw">DeltaTime</span>();</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingGraphics">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseGraphics" aria-expanded="false" aria-controls="collapseGraphics">
+                        Graphics
+                    </button>
+                </h2>
+                <div id="collapseGraphics" class="accordion-collapse collapse" aria-labelledby="headingGraphics"
+                     data-bs-parent="#wcgeAccordion">
+                    <div class="accordion-body">
+                        <p>An OpenGL abstraction layer that hides the boilerplate (VAO/VBO/EBO management, shader
+                            compilation, texture binding) and exposes a much easier-to-use graphics API. Built on
+                            <strong>GLFW</strong> for windowing and <strong>GLAD</strong> for loading GL function
+                            pointers. Components:</p>
+                        <ul class="module-families">
+                            <li><span class="family-label">Window</span>GLFW-backed window with input forwarding and GL
+                                context creation
+                            </li>
+                            <li><span class="family-label">Renderer</span>The draw-call entry point — issues commands
+                                against bound meshes, materials, and the active camera
+                            </li>
+                            <li><span class="family-label">Shader</span>Vertex/fragment program loading, compilation,
+                                linking, and uniform setters
+                            </li>
+                            <li><span class="family-label">Texture</span>Image loading via <strong>stb_image</strong>,
+                                wrapping/filtering options, and GPU upload
+                            </li>
+                            <li><span class="family-label">Mesh</span>Vertex and index buffer management with attribute
+                                layouts
+                            </li>
+                            <li><span class="family-label">Material</span>Pairs a shader with its uniforms and bound
+                                textures so it can be applied as a unit
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingInput">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseInput" aria-expanded="false" aria-controls="collapseInput">
+                        Input
+                    </button>
+                </h2>
+                <div id="collapseInput" class="accordion-collapse collapse" aria-labelledby="headingInput"
+                     data-bs-parent="#wcgeAccordion">
+                    <div class="accordion-body">
+                        <p>Keyboard and mouse polling exposed as a static API. Every frame the input system pulls state
+                            from the active <code>Window</code> and lets gameplay code query it through a simple,
+                            namespaced interface.</p>
+                        <pre class="code-block"><span class="kw">if</span> (WCGE::<span class="ty">Input</span>::<span class="kw">GetKey</span>(WCGE::<span class="ty">Key</span>::W)) {
+    transform.position += <span class="ty">Vector3</span>::<span class="ty">Forward</span> * speed * dt;
+}
+
+<span class="kw">if</span> (WCGE::<span class="ty">Input</span>::<span class="kw">GetMouseButtonDown</span>(<span class="num">0</span>)) { <span class="cm">/* ... */</span> }</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingECS">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseECS" aria-expanded="false" aria-controls="collapseECS">
+                        Entity-Component System
+                    </button>
+                </h2>
+                <div id="collapseECS" class="accordion-collapse collapse" aria-labelledby="headingECS"
+                     data-bs-parent="#wcgeAccordion">
+                    <div class="accordion-body">
+                        <p>Game objects are <strong>Entities</strong> composed of <strong>IComponent</strong>
+                            subclasses. Components are looked up by type via a templated accessor, and the engine ships
+                            aggregator headers (<code>Components.hpp</code>, <code>Entities.hpp</code>) so client code
+                            can pull in the full set with a single include.</p>
+                        <pre class="code-block"><span class="kw">auto</span>* transform = entity.<span class="kw">GetComponent</span>&lt;<span class="ty">Transform</span>&gt;();
+<span class="kw">auto</span>* renderer  = entity.<span class="kw">GetComponent</span>&lt;<span class="ty">MeshRenderer</span>&gt;();
+
+<span class="kw">if</span> (transform &amp;&amp; renderer) {
+    transform-&gt;rotation += <span class="ty">Vector3</span>::<span class="ty">Up</span> * dt;
+}</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingResources">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseResources" aria-expanded="false"
+                            aria-controls="collapseResources">
+                        Resources
+                    </button>
+                </h2>
+                <div id="collapseResources" class="accordion-collapse collapse" aria-labelledby="headingResources"
+                     data-bs-parent="#wcgeAccordion">
+                    <div class="accordion-body">
+                        <p>A <strong>ResourceManager</strong> that loads and caches shaders, textures, and meshes by
+                            key, so the same asset isn't re-parsed or re-uploaded to the GPU when multiple entities
+                            reference it. Acts as the single owner of GPU resource lifetimes for the engine.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPhysics">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePhysics" aria-expanded="false" aria-controls="collapsePhysics">
+                        Physics <span style="color:#FF0000; font-size: 0.9rem; margin-left: 8px;">(W.I.P)</span>
+                    </button>
+                </h2>
+                <div id="collapsePhysics" class="accordion-collapse collapse" aria-labelledby="headingPhysics"
+                     data-bs-parent="#wcgeAccordion">
+                    <div class="accordion-body">
+                        <p>Early-stage physics module. Currently scaffolded with <code>Physics.hpp</code> and a
+                            <code>2DCollisions.hpp</code> header — the groundwork for collision queries against the
+                            engine's <code>Rect</code> and vector types. Bodies, integration, and a broadphase are still
+                            to come.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThirdParty">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThirdParty" aria-expanded="false"
+                            aria-controls="collapseThirdParty">
+                        Third-party
+                    </button>
+                </h2>
+                <div id="collapseThirdParty" class="accordion-collapse collapse" aria-labelledby="headingThirdParty"
+                     data-bs-parent="#wcgeAccordion">
+                    <div class="accordion-body">
+                        <p>Vendored directly into <code>ThirdParty/</code> — no package manager, all referenced from the
+                            <code>.vcxproj</code> files:</p>
+                        <ul class="module-families">
+                            <li><span class="family-label">GLFW</span>Cross-platform windowing and GL context creation
+                            </li>
+                            <li><span class="family-label">GLAD</span>OpenGL function pointer loader
+                            </li>
+                            <li><span class="family-label">FastNoiseLite</span>Procedural noise for terrain and
+                                generation experiments
+                            </li>
+                            <li><span class="family-label">stb_image</span>Header-only image loader, lives inside
+                                <code>Graphics/</code>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Source Code -->
-        <a class="mt-5" style="border-radius: 10px; padding-left: 10px; padding-right: 10px; background-color: #60C689; color: #202020; font-size: 2.5rem" type="button" href="https://github.com/Mastardy/WCGE" target="_blank">Source Code</a>
+        <a class="mt-5"
+           style="border-radius: 10px; padding-left: 10px; padding-right: 10px; background-color: #60C689; color: #202020; font-size: 2.5rem"
+           type="button" href="https://github.com/Mastardy/WCGE" target="_blank">Source Code</a>
     </div>
 </div>
 
@@ -102,14 +325,6 @@
                 </a>
             </li>
             <li>
-                <a class="contact-icon-link" href="https://www.linkedin.com/in/andr%C3%A9-monteiro-2a2865233/"
-                   target="_blank">
-                    <img alt="LinkedIn" style="filter: brightness(0) invert(1)"
-                         src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" width="36" height="36">
-                    <span class="contact-icon-label">LinkedIn</span>
-                </a>
-            </li>
-            <li>
                 <a class="contact-icon-link" href="https://gitlab.com/Mastardy" target="_blank">
                     <svg width="36" height="36" viewBox="0 0 24 24" style="filter: brightness(0) invert(0.6)"
                          fill="#E24329">
@@ -119,17 +334,19 @@
                 </a>
             </li>
             <li>
+                <a class="contact-icon-link" href="https://www.linkedin.com/in/andr%C3%A9-monteiro-2a2865233/"
+                   target="_blank">
+                    <img alt="LinkedIn" style="filter: brightness(0) invert(1)"
+                         src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" width="36" height="36">
+                    <span class="contact-icon-label">LinkedIn</span>
+                </a>
+            </li>
+
+            <li>
                 <a class="contact-icon-link" href="https://mastardy.itch.io" target="_blank">
                     <img alt="itch.io" src="https://assets.ifttt.com/images/channels/586796884/icons/large.png"
                          width="36" height="36" style="border-radius: 4px;">
                     <span class="contact-icon-label">Itch.io</span>
-                </a>
-            </li>
-            <li>
-                <a class="contact-icon-link" href="https://steamcommunity.com/id/Mastardy1511/" target="_blank">
-                    <img alt="Steam" style="filter: brightness(0) invert(1)"
-                         src="https://cdn-icons-png.flaticon.com/512/3/3782.png" width="36" height="36">
-                    <span class="contact-icon-label">Steam</span>
                 </a>
             </li>
         </ul>

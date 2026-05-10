@@ -11,6 +11,12 @@
     <script src="../js/bootstrap.bundle.min.js" defer></script>
 </head>
 <body>
+<!-- Background -->
+<div style="position: fixed; width: 100%; height: 100%; z-index: -1">
+    <img style="filter: brightness(0.5) blur(0.1rem); position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover"
+         alt="background" src="../assets/tetris.png">
+</div>
+
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
     <div class="container">
@@ -50,12 +56,8 @@
                 <td class="tdRight">Personal Project</td>
             </tr>
             <tr>
-                <td class="tdLeft"><b>Software Used:</b></td>
-                <td class="tdRight">C++23</td>
-            </tr>
-            <tr>
                 <td class="tdLeft"><b>Languages Used:</b></td>
-                <td class="tdRight">C++</td>
+                <td class="tdRight">C++23</td>
             </tr>
             <tr>
                 <td class="tdLeft"><b>Roles:</b></td>
@@ -65,7 +67,7 @@
         </table>
 
         <!-- Teaser -->
-        <img style="width: 80%; padding-top: 15px" alt="Teaser" src="../assets/placeholder.png">
+        <img style="width: 80%; padding-top: 15px" alt="Teaser" src="../assets/crinkly.png">
 
         <!-- About -->
         <h2 class="sectionHeader-text pt-4 pb-2">About</h2>
@@ -86,7 +88,9 @@
         </div>
 
         <!-- Source Code -->
-        <a class="mt-5" style="border-radius: 10px; padding-left: 10px; padding-right: 10px; background-color: #60C689; color: #202020; font-size: 2.5rem" type="button" href="https://github.com/Mastardy" target="_blank">Source Code</a>
+        <a class="mt-5"
+           style="border-radius: 10px; padding-left: 10px; padding-right: 10px; background-color: #60C689; color: #202020; font-size: 2.5rem"
+           type="button" href="https://github.com/Mastardy" target="_blank">Source Code</a>
     </div>
 </div>
 
@@ -102,14 +106,6 @@
                 </a>
             </li>
             <li>
-                <a class="contact-icon-link" href="https://www.linkedin.com/in/andr%C3%A9-monteiro-2a2865233/"
-                   target="_blank">
-                    <img alt="LinkedIn" style="filter: brightness(0) invert(1)"
-                         src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" width="36" height="36">
-                    <span class="contact-icon-label">LinkedIn</span>
-                </a>
-            </li>
-            <li>
                 <a class="contact-icon-link" href="https://gitlab.com/Mastardy" target="_blank">
                     <svg width="36" height="36" viewBox="0 0 24 24" style="filter: brightness(0) invert(0.6)"
                          fill="#E24329">
@@ -119,17 +115,19 @@
                 </a>
             </li>
             <li>
+                <a class="contact-icon-link" href="https://www.linkedin.com/in/andr%C3%A9-monteiro-2a2865233/"
+                   target="_blank">
+                    <img alt="LinkedIn" style="filter: brightness(0) invert(1)"
+                         src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" width="36" height="36">
+                    <span class="contact-icon-label">LinkedIn</span>
+                </a>
+            </li>
+
+            <li>
                 <a class="contact-icon-link" href="https://mastardy.itch.io" target="_blank">
                     <img alt="itch.io" src="https://assets.ifttt.com/images/channels/586796884/icons/large.png"
                          width="36" height="36" style="border-radius: 4px;">
                     <span class="contact-icon-label">Itch.io</span>
-                </a>
-            </li>
-            <li>
-                <a class="contact-icon-link" href="https://steamcommunity.com/id/Mastardy1511/" target="_blank">
-                    <img alt="Steam" style="filter: brightness(0) invert(1)"
-                         src="https://cdn-icons-png.flaticon.com/512/3/3782.png" width="36" height="36">
-                    <span class="contact-icon-label">Steam</span>
                 </a>
             </li>
         </ul>

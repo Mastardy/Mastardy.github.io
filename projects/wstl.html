@@ -9,6 +9,19 @@
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/MyStyle.css" rel="stylesheet">
     <script src="../js/bootstrap.bundle.min.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            const root = document.getElementById('wstlAccordion');
+            if (!root) return;
+            root.querySelectorAll('.accordion-collapse').forEach(panel => {
+                panel.addEventListener('show.bs.collapse', () => {
+                    root.querySelectorAll('.accordion-collapse.show').forEach(other => {
+                        if (other !== panel) bootstrap.Collapse.getOrCreateInstance(other).hide();
+                    });
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <!-- Navigation Bar -->
@@ -50,12 +63,8 @@
                 <td class="tdRight">Personal Project</td>
             </tr>
             <tr>
-                <td class="tdLeft"><b>Software Used:</b></td>
-                <td class="tdRight">Modern C++</td>
-            </tr>
-            <tr>
                 <td class="tdLeft"><b>Languages Used:</b></td>
-                <td class="tdRight">C++</td>
+                <td class="tdRight">Modern C++</td>
             </tr>
             <tr>
                 <td class="tdLeft"><b>Roles:</b></td>
@@ -65,7 +74,8 @@
         </table>
 
         <!-- Teaser -->
-        <img style="width: 80%; padding-top: 15px" alt="WSTL logo" src="../assets/WSTL.svg">
+        <img style="width: 60%; margin-top: 32px; margin-bottom: 32px; border-style: solid; border-color: #60C689; border-width: 2px; border-radius: 16px"
+             alt="WSTL logo" src="../assets/WSTL.svg">
 
         <!-- About -->
         <h2 class="sectionHeader-text pt-4 pb-2">About</h2>
@@ -85,79 +95,118 @@
         </div>
 
         <!-- Showcase -->
-        <h2 class="sectionHeader-text pt-4 pb-2">Modules</h2>
+        <h2 class="sectionHeader-text pt-4 pb-3">Modules</h2>
         <div class="accordion" id="wstlAccordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingContainers">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContainers" aria-expanded="false" aria-controls="collapseContainers">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseContainers" aria-expanded="false"
+                            aria-controls="collapseContainers">
                         Containers
                     </button>
                 </h2>
-                <div id="collapseContainers" class="accordion-collapse collapse" aria-labelledby="headingContainers" data-bs-parent="#wstlAccordion">
+                <div id="collapseContainers" class="accordion-collapse collapse" aria-labelledby="headingContainers"
+                     data-bs-parent="#wstlAccordion">
                     <div class="accordion-body">
-                        <p>The bulk of the library. Split into four families:</p>
-                        <ul class="text-start" style="display: inline-block;">
-                            <li><strong>Sequence</strong> — Array, Vector, List, SList, Deque, BitSet</li>
-                            <li><strong>Associative</strong> — Map, Set, HashMap, BinaryHeap (backed by an internal RBTree)</li>
-                            <li><strong>Adapters</strong> — Stack, Queue, PriorityQueue</li>
-                            <li><strong>Fixed-capacity</strong> — FixedVector for stack-allocated, bounded storage</li>
+                        <p>The largest module, and the reason the library exists. Every container is built directly on
+                            the WSTL allocator and types — no STL fallbacks — so behaviour stays predictable across
+                            platforms and inside arenas. They split across five fronts:</p>
+                        <ul class="module-families">
+                            <li><span class="family-label">Lists &amp; arrays</span>Array, Vector, List (doubly linked),
+                                SList (singly linked), Deque, BitSet
+                            </li>
+                            <li><span class="family-label">Keyed lookup</span>Map and Set on a self-balancing red-black
+                                tree, HashMap with open addressing and a MurmurHash3 backbone
+                            </li>
+                            <li><span class="family-label">Stacks &amp; queues</span>Stack, Queue, and PriorityQueue
+                                (sitting on a BinaryHeap)
+                            </li>
+                            <li><span class="family-label">Stack-allocated</span>FixedVector for bounded, zero-heap
+                                buffers when allocation cost matters
+                            </li>
+                            <li><span class="family-label">Glue</span>Pair, the value type returned and stored across
+                                every keyed container
+                            </li>
                         </ul>
-                        <pre class="text-start"><code>WSTL::Vector&lt;int&gt; nums;
-nums.PushBack(1);
-nums.PushBack(2);
+                        <pre class="code-block"><span class="kw">auto</span> nums = WSTL::<span class="ty">Vector</span>&lt;<span class="ty">int</span>&gt;{ <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span> };
+nums.<span class="kw">PushBack</span>(<span class="num">4</span>);
+nums.<span class="kw">PopBack</span>();
 
-WSTL::HashMap&lt;WSTL::String, int&gt; scores;
-scores["andre"] = 42;</code></pre>
+WSTL::<span class="ty">HashMap</span>&lt;WSTL::<span class="ty">string</span>, <span class="ty">int</span>&gt; scores;
+scores.<span class="kw">Insert</span>(<span class="str">"andre"</span>, <span class="num">42</span>);
+
+WSTL::<span class="ty">FixedVector</span>&lt;<span class="ty">int</span>, <span class="num">16</span>&gt; onStack; <span class="cm">// no heap</span></pre>
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingMemory">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMemory" aria-expanded="false" aria-controls="collapseMemory">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseMemory" aria-expanded="false" aria-controls="collapseMemory">
                         Memory
                     </button>
                 </h2>
-                <div id="collapseMemory" class="accordion-collapse collapse" aria-labelledby="headingMemory" data-bs-parent="#wstlAccordion">
+                <div id="collapseMemory" class="accordion-collapse collapse" aria-labelledby="headingMemory"
+                     data-bs-parent="#wstlAccordion">
                     <div class="accordion-body">
-                        <p>Allocator interface plus the three smart-pointer flavours: <strong>UniquePointer</strong>, <strong>SharedPointer</strong>, and <strong>WeakPointer</strong>. Allocators are pluggable so containers can be tuned for arena/pool strategies in WCGE.</p>
-                        <pre class="text-start"><code>auto p = WSTL::MakeUnique&lt;Player&gt;("Gaby");
-auto s = WSTL::MakeShared&lt;World&gt;();
-WSTL::WeakPointer&lt;World&gt; w = s;</code></pre>
+                        <p>An aligned <strong>Allocator</strong> with allocate/construct/destruct/deallocate helpers,
+                            free <code>Destruct</code>/<code>Free</code>/<code>FreeArray</code> utilities that respect
+                            trivial types, and the three smart-pointer flavours: <strong>UniquePointer</strong>,
+                            <strong>SharedPointer</strong>, and <strong>WeakPointer</strong>, with
+                            <code>MakeUnique</code> and <code>MakeShared</code> factories.</p>
+                        <pre class="code-block"><span class="kw">auto</span> p = WSTL::<span class="kw">MakeUnique</span>&lt;<span class="ty">Player</span>&gt;(<span class="str">"Gaby"</span>);
+<span class="kw">auto</span> s = WSTL::<span class="kw">MakeShared</span>&lt;<span class="ty">World</span>&gt;();
+WSTL::<span class="ty">WeakPointer</span>&lt;<span class="ty">World</span>&gt; w = s;</pre>
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingUtility">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUtility" aria-expanded="false" aria-controls="collapseUtility">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseUtility" aria-expanded="false" aria-controls="collapseUtility">
                         Utility
                     </button>
                 </h2>
-                <div id="collapseUtility" class="accordion-collapse collapse" aria-labelledby="headingUtility" data-bs-parent="#wstlAccordion">
+                <div id="collapseUtility" class="accordion-collapse collapse" aria-labelledby="headingUtility"
+                     data-bs-parent="#wstlAccordion">
                     <div class="accordion-body">
-                        <p>Cross-cutting helpers: <strong>Pair</strong>, <strong>Optional</strong>, <strong>Any</strong>, <strong>TypeTraits</strong>, and a <strong>Hash</strong> facility with a <code>HasCustomHash</code> SFINAE check that lets user types opt in to hashing without specialising a template.</p>
-                        <pre class="text-start"><code>struct Id { int v; uint64_t Hash() const { return v; } };
-static_assert(WSTL::HasCustomHash&lt;Id&gt;);
+                        <p>Cross-cutting helpers: <strong>Optional</strong>, type-erased <strong>Any</strong>, a
+                            <strong>TypeTraits</strong> header, a generic <code>Swap</code>, and a free
+                            <strong>MurmurHash3</strong> <code>Hash(data, length)</code>. HashMap pairs this with a
+                            <code>HasCustomHash</code> SFINAE check, letting any type with a <code>Hash()</code> method
+                            opt in without specialising a template.</p>
+                        <pre class="code-block"><span class="kw">struct</span> <span class="ty">Id</span> { <span class="ty">int</span> v; WSTL::<span class="ty">UI32</span> <span class="kw">Hash</span>() <span class="kw">const</span> { <span class="kw">return</span> v; } };
+<span class="kw">static_assert</span>(WSTL::<span class="ty">HasCustomHash</span>&lt;<span class="ty">Id</span>&gt;::value);
 
-WSTL::Optional&lt;int&gt; find(int key);</code></pre>
+WSTL::<span class="ty">Optional</span>&lt;<span class="ty">int</span>&gt; maybe(<span class="num">42</span>);
+<span class="kw">if</span> (maybe.<span class="kw">HasValue</span>()) { <span class="cm">/* ... */</span> }</pre>
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingCore">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCore" aria-expanded="false" aria-controls="collapseCore">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseCore" aria-expanded="false" aria-controls="collapseCore">
                         Core
                     </button>
                 </h2>
-                <div id="collapseCore" class="accordion-collapse collapse" aria-labelledby="headingCore" data-bs-parent="#wstlAccordion">
+                <div id="collapseCore" class="accordion-collapse collapse" aria-labelledby="headingCore"
+                     data-bs-parent="#wstlAccordion">
                     <div class="accordion-body">
-                        <p>Foundational primitives the rest of the library is built on: fixed-width integer types, the <code>var</code> alias, and the base <code>Hash</code> trait used by associative containers.</p>
+                        <p>Foundational primitives in <code>Types.hpp</code> the rest of the library is built on:
+                            <code>Size</code> and <code>PtrDiff</code>, fixed-width unsigned integers
+                            (<code>UI8</code>/<code>UI16</code>/<code>UI32</code>/<code>UI64</code>), <code>Bit</code>
+                            and <code>Byte</code>, plus a lowercase <code>string</code> alias for
+                            <code>std::string</code>.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Source Code -->
-        <a class="mt-5" style="border-radius: 10px; padding-left: 10px; padding-right: 10px; background-color: #60C689; color: #202020; font-size: 2.5rem" type="button" href="https://github.com/Mastardy" target="_blank">Source Code</a>
+        <a class="mt-5"
+           style="border-radius: 10px; padding-left: 10px; padding-right: 10px; background-color: #60C689; color: #202020; font-size: 2.5rem"
+           type="button" href="https://github.com/Mastardy" target="_blank">Source Code</a>
     </div>
 </div>
 
@@ -173,14 +222,6 @@ WSTL::Optional&lt;int&gt; find(int key);</code></pre>
                 </a>
             </li>
             <li>
-                <a class="contact-icon-link" href="https://www.linkedin.com/in/andr%C3%A9-monteiro-2a2865233/"
-                   target="_blank">
-                    <img alt="LinkedIn" style="filter: brightness(0) invert(1)"
-                         src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" width="36" height="36">
-                    <span class="contact-icon-label">LinkedIn</span>
-                </a>
-            </li>
-            <li>
                 <a class="contact-icon-link" href="https://gitlab.com/Mastardy" target="_blank">
                     <svg width="36" height="36" viewBox="0 0 24 24" style="filter: brightness(0) invert(0.6)"
                          fill="#E24329">
@@ -190,17 +231,19 @@ WSTL::Optional&lt;int&gt; find(int key);</code></pre>
                 </a>
             </li>
             <li>
+                <a class="contact-icon-link" href="https://www.linkedin.com/in/andr%C3%A9-monteiro-2a2865233/"
+                   target="_blank">
+                    <img alt="LinkedIn" style="filter: brightness(0) invert(1)"
+                         src="https://cdn-icons-png.flaticon.com/512/3536/3536569.png" width="36" height="36">
+                    <span class="contact-icon-label">LinkedIn</span>
+                </a>
+            </li>
+
+            <li>
                 <a class="contact-icon-link" href="https://mastardy.itch.io" target="_blank">
                     <img alt="itch.io" src="https://assets.ifttt.com/images/channels/586796884/icons/large.png"
                          width="36" height="36" style="border-radius: 4px;">
                     <span class="contact-icon-label">Itch.io</span>
-                </a>
-            </li>
-            <li>
-                <a class="contact-icon-link" href="https://steamcommunity.com/id/Mastardy1511/" target="_blank">
-                    <img alt="Steam" style="filter: brightness(0) invert(1)"
-                         src="https://cdn-icons-png.flaticon.com/512/3/3782.png" width="36" height="36">
-                    <span class="contact-icon-label">Steam</span>
                 </a>
             </li>
         </ul>
