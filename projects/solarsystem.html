@@ -69,7 +69,7 @@
             </tr>
             <tr>
                 <td class="tdLeft"><b>Frameworks:</b></td>
-                <td class="tdRight">Unity DOTS — Entities, Burst, Jobs, URP 17.4</td>
+                <td class="tdRight">Unity DOTS (Entities, Burst, Jobs), URP 17.4</td>
             </tr>
             <tr>
                 <td class="tdLeft"><b>Languages:</b></td>
@@ -93,7 +93,7 @@
         <h2 class="sectionHeader-text pt-4 pb-2">About</h2>
         <p class="offset-md-2 col-md-8" style="margin: 0 auto;">
             A real-time solar system simulation built in Unity 6 using the Data-Oriented Technology Stack (DOTS/ECS).
-            The simulation models a star, all major planets, and a dense asteroid belt of 100,000+ bodies — each
+            The simulation models a star, all major planets, and a dense asteroid belt of 100,000+ bodies, all
             governed by Keplerian orbital mechanics and rendered with fully procedural shaders. No pre-baked textures:
             the sun, skybox, and planet surfaces are generated entirely in HLSL at runtime.
         </p>
@@ -104,10 +104,9 @@
             <div class="offset-md-2 col-md-8">
                 <strong>Sole Developer</strong>
                 <p>
-                    I designed and built every aspect of the project — ECS architecture, Kepler orbital solver,
+                    I designed and built every aspect of the project: ECS architecture, Kepler orbital solver,
                     floating-origin precision system, all three procedural HLSL shaders (Sun, Skybox, Planet), and the
-                    GPU-instanced rendering pipeline. The project intentionally minimises runtime C# (87 lines across
-                    2 files) while pushing complexity into the shader layer.
+                    GPU-instanced rendering pipeline.
                 </p>
             </div>
         </div>
@@ -126,8 +125,8 @@
                 <div id="collapsePhysics" class="accordion-collapse collapse" aria-labelledby="headingPhysics"
                      data-bs-parent="#solarAccordion">
                     <div class="accordion-body">
-                        <p>Orbital mechanics use a <strong>dominant-attractor gravity model</strong> — each body orbits
-                            exactly one parent — keeping simulation complexity O(N) and viable at asteroid-belt scale.
+                        <p>Orbital mechanics use a <strong>dominant-attractor gravity model</strong>. Each body orbits
+                            exactly one parent, keeping simulation complexity O(N) and viable at asteroid-belt scale.
                             Integration uses semi-implicit (symplectic) Euler for long-term orbit stability.</p>
                         <p>Positions are solved analytically each frame via a <strong>Kepler solver</strong> with
                             Newton-Raphson iteration (8 steps) on the eccentric anomaly, then projected to world space.
@@ -152,8 +151,8 @@
                         <p>The simulation is built entirely on Unity's Baker pattern and Burst-compiled parallel jobs:</p>
                         <ul class="module-families">
                             <li><span class="family-label">Authoring</span><code>Baker&lt;T&gt;</code> converts
-                                MonoBehaviour components to <code>IComponentData</code> at subscene bake time — zero
-                                runtime overhead from authoring data.</li>
+                                MonoBehaviour components to <code>IComponentData</code> at subscene bake time, with
+                                zero runtime overhead from authoring data.</li>
                             <li><span class="family-label">Per-entity work</span><code>ISystem</code> +
                                 <code>IJobEntity</code>, Burst-compiled and fully parallelised across all orbital
                                 bodies each frame.</li>
@@ -182,7 +181,7 @@
                 <div id="collapseSun" class="accordion-collapse collapse" aria-labelledby="headingSun"
                      data-bs-parent="#solarAccordion">
                     <div class="accordion-body">
-                        <p>An animated stellar surface driven entirely by procedural noise — no textures. Four layers of
+                        <p>An animated stellar surface driven entirely by procedural noise, with no textures. Four layers of
                             simplex noise at different scales (22, 77, 52, 272) are combined into a single "heat" value,
                             which is mapped through a four-stop color ramp: dark core → orange → yellow → hot white.</p>
                         <p>Domain warping displaces the noise lookup before sampling, eliminating tiling artifacts. A
@@ -228,7 +227,7 @@
                     <div class="accordion-body">
                         <p>Planets receive light exclusively from the Sun via a custom forward-rendering shader. The
                             light loop iterates URP's additional-light list, picks the dominant contribution per pixel,
-                            and applies per-pixel shadow attenuation — giving physically plausible day/night terminator
+                            and applies per-pixel shadow attenuation, giving physically plausible day/night terminator
                             lines with no baked lightmaps.</p>
                         <p>DOTS instancing allows per-entity color variation across the same GPU-instanced draw call.
                             The shader runs 4 passes: UniversalForward, ShadowCaster, DepthOnly, and DepthNormals.</p>
