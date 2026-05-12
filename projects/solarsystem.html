@@ -9,6 +9,19 @@
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/MyStyle.css" rel="stylesheet">
     <script src="../js/bootstrap.bundle.min.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            const root = document.getElementById('solarAccordion');
+            if (!root) return;
+            root.querySelectorAll('.accordion-collapse').forEach(panel => {
+                panel.addEventListener('show.bs.collapse', () => {
+                    root.querySelectorAll('.accordion-collapse.show').forEach(other => {
+                        if (other !== panel) bootstrap.Collapse.getOrCreateInstance(other).hide();
+                    });
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <!-- Navigation Bar -->
@@ -42,6 +55,7 @@
 <div class="siteSection project" style="margin-top: 56px;">
     <div class="container">
         <h1 class="sectionHeader-text mb-4">Solar System Simulator</h1>
+
         <!-- Specs -->
         <table style="margin: auto;">
             <tbody>
@@ -50,45 +64,184 @@
                 <td class="tdRight">Personal Project</td>
             </tr>
             <tr>
-                <td class="tdLeft"><b>Frameworks Used:</b></td>
-                <td class="tdRight">Unity (DOTS, Burst, Jobs)</td>
+                <td class="tdLeft"><b>Engine:</b></td>
+                <td class="tdRight">Unity 6 (6000.4.5f1)</td>
             </tr>
             <tr>
-                <td class="tdLeft"><b>Languages Used:</b></td>
-                <td class="tdRight">C#</td>
+                <td class="tdLeft"><b>Frameworks:</b></td>
+                <td class="tdRight">Unity DOTS — Entities, Burst, Jobs, URP 17.4</td>
             </tr>
             <tr>
-                <td class="tdLeft"><b>Roles:</b></td>
-                <td class="tdRight">Developer</td>
+                <td class="tdLeft"><b>Languages:</b></td>
+                <td class="tdRight">C#, HLSL</td>
+            </tr>
+            <tr>
+                <td class="tdLeft"><b>Role:</b></td>
+                <td class="tdRight">Sole Developer</td>
+            </tr>
+            <tr>
+                <td class="tdLeft"><b>Status:</b></td>
+                <td class="tdRight">In Development</td>
             </tr>
             </tbody>
         </table>
 
         <!-- Teaser -->
-        <img style="width: 80%; padding-top: 15px" alt="Teaser" src="../assets/placeholder.png">
+        <img style="width: 80%; padding-top: 15px" alt="Solar System Simulator" src="../assets/solarsystem.png">
 
         <!-- About -->
         <h2 class="sectionHeader-text pt-4 pb-2">About</h2>
         <p class="offset-md-2 col-md-8" style="margin: 0 auto;">
-            A real-time solar system simulation built with Unity's Data-Oriented Technology Stack. Architected for
-            100,000+ asteroids in the asteroid belt using cache-friendly ECS layouts and Burst-compiled parallel jobs,
-            with Keplerian orbital mechanics and a floating-origin system to handle solar-system-scale distances
-            without precision loss.
+            A real-time solar system simulation built in Unity 6 using the Data-Oriented Technology Stack (DOTS/ECS).
+            The simulation models a star, all major planets, and a dense asteroid belt of 100,000+ bodies — each
+            governed by Keplerian orbital mechanics and rendered with fully procedural shaders. No pre-baked textures:
+            the sun, skybox, and planet surfaces are generated entirely in HLSL at runtime.
         </p>
 
         <!-- Role -->
-        <h2 class="sectionHeader-text pt-4 pb-2">Roles</h2>
+        <h2 class="sectionHeader-text pt-4 pb-2">Role</h2>
         <div class="row">
             <div class="offset-md-2 col-md-8">
-                <strong>Developer</strong>
-                <p>As the only developer, I'm responsible for the making of everything.</p>
+                <strong>Sole Developer</strong>
+                <p>
+                    I designed and built every aspect of the project — ECS architecture, Kepler orbital solver,
+                    floating-origin precision system, all three procedural HLSL shaders (Sun, Skybox, Planet), and the
+                    GPU-instanced rendering pipeline. The project intentionally minimises runtime C# (87 lines across
+                    2 files) while pushing complexity into the shader layer.
+                </p>
             </div>
+        </div>
+
+        <!-- Details Accordion -->
+        <h2 class="sectionHeader-text pt-4 pb-3">Technical Details</h2>
+        <div class="accordion" id="solarAccordion">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPhysics">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePhysics" aria-expanded="false" aria-controls="collapsePhysics">
+                        Orbital Physics
+                    </button>
+                </h2>
+                <div id="collapsePhysics" class="accordion-collapse collapse" aria-labelledby="headingPhysics"
+                     data-bs-parent="#solarAccordion">
+                    <div class="accordion-body">
+                        <p>Orbital mechanics use a <strong>dominant-attractor gravity model</strong> — each body orbits
+                            exactly one parent — keeping simulation complexity O(N) and viable at asteroid-belt scale.
+                            Integration uses semi-implicit (symplectic) Euler for long-term orbit stability.</p>
+                        <p>Positions are solved analytically each frame via a <strong>Kepler solver</strong> with
+                            Newton-Raphson iteration (8 steps) on the eccentric anomaly, then projected to world space.
+                            Units are physically grounded: 1 unit = 1 AU, 1 time unit = 1 day, mass stored as GM
+                            (gravitational parameter μ). Time is scaled ×10 for playback speed.</p>
+                        <p>A <strong>floating-origin system</strong> rebases entity positions relative to the camera
+                            each frame, eliminating float32 precision loss at solar-system scales.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingECS">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseECS" aria-expanded="false" aria-controls="collapseECS">
+                        ECS Architecture
+                    </button>
+                </h2>
+                <div id="collapseECS" class="accordion-collapse collapse" aria-labelledby="headingECS"
+                     data-bs-parent="#solarAccordion">
+                    <div class="accordion-body">
+                        <p>The simulation is built entirely on Unity's Baker pattern and Burst-compiled parallel jobs:</p>
+                        <ul class="module-families">
+                            <li><span class="family-label">Authoring</span><code>Baker&lt;T&gt;</code> converts
+                                MonoBehaviour components to <code>IComponentData</code> at subscene bake time — zero
+                                runtime overhead from authoring data.</li>
+                            <li><span class="family-label">Per-entity work</span><code>ISystem</code> +
+                                <code>IJobEntity</code>, Burst-compiled and fully parallelised across all orbital
+                                bodies each frame.</li>
+                            <li><span class="family-label">Cross-entity reads</span><code>IJobChunk</code> +
+                                <code>ComponentLookup&lt;T&gt;</code> for moon-to-planet parent lookups.</li>
+                            <li><span class="family-label">Asteroid spawning</span><code>EntityCommandBuffer</code>
+                                for deferred runtime entity creation.</li>
+                            <li><span class="family-label">Orbit trails</span><code>DynamicBuffer&lt;T&gt;</code> per
+                                entity, updated in jobs.</li>
+                            <li><span class="family-label">Spatial queries</span>Uniform grid via
+                                <code>NativeParallelMultiHashMap</code>.</li>
+                            <li><span class="family-label">Precision</span>float32 + floating origin rebasing for
+                                solar-system-scale distances.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSun">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSun" aria-expanded="false" aria-controls="collapseSun">
+                        Sun Shader
+                    </button>
+                </h2>
+                <div id="collapseSun" class="accordion-collapse collapse" aria-labelledby="headingSun"
+                     data-bs-parent="#solarAccordion">
+                    <div class="accordion-body">
+                        <p>An animated stellar surface driven entirely by procedural noise — no textures. Four layers of
+                            simplex noise at different scales (22, 77, 52, 272) are combined into a single "heat" value,
+                            which is mapped through a four-stop color ramp: dark core → orange → yellow → hot white.</p>
+                        <p>Domain warping displaces the noise lookup before sampling, eliminating tiling artifacts. A
+                            configurable <strong>Fresnel</strong> term produces a glowing corona rim. DOTS instancing is
+                            enabled for per-entity color variation across GPU-instanced draw calls.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSkybox">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSkybox" aria-expanded="false" aria-controls="collapseSkybox">
+                        Procedural Skybox
+                    </button>
+                </h2>
+                <div id="collapseSkybox" class="accordion-collapse collapse" aria-labelledby="headingSkybox"
+                     data-bs-parent="#solarAccordion">
+                    <div class="accordion-body">
+                        <p>A fully procedural three-layer skybox rendered in a single fragment pass:</p>
+                        <ul class="module-families">
+                            <li><span class="family-label">Stars</span>Three scale-layered populations with randomised
+                                size, color temperature (cool blue ↔ warm orange), and time-driven twinkling. Bright
+                                stars receive a soft halo.</li>
+                            <li><span class="family-label">Nebula</span>Domain-warped FBM noise (5 octaves) blended
+                                across three tunable colors, with independent contrast and coverage controls.</li>
+                            <li><span class="family-label">Galaxy band</span>A Gaussian falloff along a configurable
+                                axis brightens both stars and nebula, simulating a Milky-Way-style galactic core.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPlanets">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePlanets" aria-expanded="false" aria-controls="collapsePlanets">
+                        Planet Lighting
+                    </button>
+                </h2>
+                <div id="collapsePlanets" class="accordion-collapse collapse" aria-labelledby="headingPlanets"
+                     data-bs-parent="#solarAccordion">
+                    <div class="accordion-body">
+                        <p>Planets receive light exclusively from the Sun via a custom forward-rendering shader. The
+                            light loop iterates URP's additional-light list, picks the dominant contribution per pixel,
+                            and applies per-pixel shadow attenuation — giving physically plausible day/night terminator
+                            lines with no baked lightmaps.</p>
+                        <p>DOTS instancing allows per-entity color variation across the same GPU-instanced draw call.
+                            The shader runs 4 passes: UniversalForward, ShadowCaster, DepthOnly, and DepthNormals.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Source Code -->
         <a class="mt-5"
            style="border-radius: 10px; padding-left: 10px; padding-right: 10px; background-color: #60C689; color: #202020; font-size: 2.5rem"
-           type="button" href="https://github.com/Mastardy" target="_blank">Source Code</a>
+           type="button" href="https://github.com/Mastardy/SolarSystemDOTS" target="_blank">Source Code</a>
     </div>
 </div>
 
@@ -120,7 +273,6 @@
                     <span class="contact-icon-label">LinkedIn</span>
                 </a>
             </li>
-
             <li>
                 <a class="contact-icon-link" href="https://mastardy.itch.io" target="_blank">
                     <img alt="itch.io" src="https://assets.ifttt.com/images/channels/586796884/icons/large.png"
